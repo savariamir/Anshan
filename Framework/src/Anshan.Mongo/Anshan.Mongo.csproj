@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <IsPackable>true</IsPackable>
+        <Title>Anshan.Mongo</Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="ChainRunner" Version="0.4.1" />
+        <PackageReference Include="MongoDB.Driver" Version="2.13.0" />
+        <PackageReference Include="MongoDB.Driver.GridFS" Version="2.13.0" />
+        <PackageReference Include="Humanizer.Core" Version="2.11.10" />
+        <PackageReference Include="Scrutor" Version="3.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Anshan.Collections\Anshan.Collections.csproj" />
+        <ProjectReference Include="..\Anshan.Core\Anshan.Core.csproj" />
+        <ProjectReference Include="..\Anshan.Domain\Anshan.Domain.csproj" />
+        <ProjectReference Include="..\Anshan.Persistence\Anshan.Persistence.csproj" />
+        <ProjectReference Include="..\Anshan.Query\Anshan.Query.csproj" />
+    </ItemGroup>
+
+</Project>

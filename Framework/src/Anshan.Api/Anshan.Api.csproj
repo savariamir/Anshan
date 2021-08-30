@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <IsPackable>true</IsPackable>
+        <Title>Anshan.Api</Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Anshan.Application\Anshan.Application.csproj" />
+        <ProjectReference Include="..\Anshan.Domain\Anshan.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    </ItemGroup>
+</Project>

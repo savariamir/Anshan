@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <IsPackable>true</IsPackable>
+        <Title>Anshan.Domain</Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="libphonenumber-csharp" Version="8.12.28" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Anshan.Collections\Anshan.Collections.csproj" />
+        <ProjectReference Include="..\Anshan.Core\Anshan.Core.csproj" />
+        <ProjectReference Include="..\Anshan.Extensions\Anshan.Extensions.csproj" />
+    </ItemGroup>
+</Project>
