@@ -36,9 +36,9 @@ namespace Catalog.Domain.Products.Builders
             return this;
         }
 
-        public ProductOptionsBuilder SetQuantity(string name)
+        public ProductOptionsBuilder SetQuantity(int quantity)
         {
-            SetValue(p => p.Name, name);
+            SetValue(p => p.Quantity, quantity);
             return this;
         }
     }
