@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using Anshan.Application;
-using Anshan.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Anshan.MicrosoftDI.Extensions

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Anshan.Validator;
+using Anshan.Validator.Abstractions;
 
 namespace Anshan.Application.Exceptions
 {

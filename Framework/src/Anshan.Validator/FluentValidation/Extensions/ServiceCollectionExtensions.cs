@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
+using Anshan.Validator.Abstractions;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using IValidator = Anshan.Validator.Abstractions.IValidator;
 
 namespace Anshan.Validator.FluentValidation.Extensions
 {
@@ -10,7 +12,7 @@ namespace Anshan.Validator.FluentValidation.Extensions
 
         /// <summary>
         ///     Register FluentValidation validators from the specified assembly and
-        ///     Registers the fluent validation as the default provider of <see cref="Anshan.Validator.IValidator" />
+        ///     Registers the fluent validation as the default provider of <see cref="IValidator" />
         /// </summary>
         /// <param name="services">The <see cref="Microsoft.Extensions.DependencyInjection.IServiceCollection" /></param>
         /// <param name="assemblyContainingValidators">The assembly to look for <see cref="AbstractValidator{T}" /> implementations</param>

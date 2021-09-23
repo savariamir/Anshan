@@ -1,9 +1,9 @@
 using System;
 using Anshan.Domain;
 
-namespace Framework.Persistence.Outbox
+namespace Anshan.Persistence.Outbox
 {
-    public class OutboxItem : Entity<string>
+    public class OutboxItem : Entity<int>
     {
         public OutboxItem()
         {

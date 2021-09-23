@@ -1,7 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.10" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+        <PackageReference Include="Serilog" Version="2.10.0" />
+        <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+        <PackageReference Include="prometheus-net" Version="5.0.1" />
+        <PackageReference Include="prometheus-net.AspNetCore" Version="5.0.1" />
+        <PackageReference Include="prometheus-net.AspNetCore.HealthChecks" Version="5.0.1" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Framework\src\Anshan.Log.Serilog\Anshan.Log.Serilog.csproj" />
+      <ProjectReference Include="..\..\Application\Catalog.Application.Contracts\Catalog.Application.Contracts.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Catalog.Config\Catalog.Config.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Catalog.Query\Catalog.Query.csproj" />
+    </ItemGroup>
 
 </Project>

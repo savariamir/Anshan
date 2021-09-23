@@ -1,9 +1,8 @@
 using System;
-using Anshan.Mongo.Builders;
 using Anshan.Mongo.Internal.Configuration;
 using Anshan.Mongo.Options;
 
-namespace Anshan.Mongo
+namespace Anshan.Mongo.Builders
 {
     public class MongoBuilder
     {

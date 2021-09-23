@@ -1,10 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Anshan.Domain
 {
-    public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregate
+    public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregate, IVersionable
     {
         private List<DomainEvent> _domainEvents;
+
+        public int Version { get; private set; } = 1;
+
+        void IVersionable.IncrementVersion()
+        {
+            Version++;
+        }
 
         protected AggregateRoot()
         {

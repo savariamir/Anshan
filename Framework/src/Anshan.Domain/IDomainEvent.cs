@@ -1,11 +1,12 @@
 using System;
+using Anshan.Core.Events;
 
 namespace Anshan.Domain
 {
     // Chain
     // Command -> Event -> Command
 
-    public interface IDomainEvent
+    public interface IDomainEvent : IEvent
     {
         /// <summary>
         ///     Represents the aggregate that owns the event

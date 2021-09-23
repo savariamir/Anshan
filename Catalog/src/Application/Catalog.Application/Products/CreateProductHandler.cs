@@ -20,7 +20,7 @@ namespace Catalog.Application.Products
             var options = ProductOptionsFactory.CreateFrom(command);
             var product = Product.Create(options);
             await _repository.AddAsync(product);
-            
+
             return product.Id;
         }
     }

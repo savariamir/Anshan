@@ -7,7 +7,7 @@ using LiteBus.Messaging.Abstractions;
 
 namespace Anshan.LiteBus
 {
-    public class BeginTransactionHook : ICommandPreHandleHook
+    public class BeginTransactionHook : ICommandPreHandler
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -16,7 +16,7 @@ namespace Anshan.LiteBus
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
 
-        public Task ExecuteAsync(IMessage message, CancellationToken cancellationToken = new CancellationToken())
+        public Task PreHandleAsync(IHandleContext<ICommandBase> context)
         {
             return _unitOfWork.BeginAsync();
         }

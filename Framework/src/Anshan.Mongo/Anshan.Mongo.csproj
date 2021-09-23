@@ -8,8 +8,8 @@
 
     <ItemGroup>
         <PackageReference Include="ChainRunner" Version="0.4.1" />
-        <PackageReference Include="MongoDB.Driver" Version="2.13.0" />
-        <PackageReference Include="MongoDB.Driver.GridFS" Version="2.13.0" />
+        <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+        <PackageReference Include="MongoDB.Driver.GridFS" Version="2.13.1" />
         <PackageReference Include="Humanizer.Core" Version="2.11.10" />
         <PackageReference Include="Scrutor" Version="3.3.0" />
     </ItemGroup>

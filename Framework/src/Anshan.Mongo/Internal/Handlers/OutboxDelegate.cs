@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Anshan.Domain;
 using Anshan.Mongo.Abstractions;
-using Framework.Persistence.Outbox;
+using Anshan.Persistence.Outbox;
 
 namespace Anshan.Mongo.Internal.Handlers
 {

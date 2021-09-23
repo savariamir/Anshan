@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Anshan.Collections
+﻿namespace Anshan.Collections
 {
     public class Class1
     {

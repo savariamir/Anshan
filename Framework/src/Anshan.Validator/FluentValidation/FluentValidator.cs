@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Anshan.Validator.Abstractions;
 using Anshan.Validator.FluentValidation.Exceptions;
 using FluentValidation;
+using IValidator = Anshan.Validator.Abstractions.IValidator;
 
 namespace Anshan.Validator.FluentValidation
 {

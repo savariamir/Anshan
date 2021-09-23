@@ -3,7 +3,7 @@ using System.Linq;
 using Anshan.Domain;
 using Newtonsoft.Json;
 
-namespace Framework.Persistence.Outbox
+namespace Anshan.Persistence.Outbox
 {
     public static class OutboxItemFactory
     {
@@ -12,7 +12,7 @@ namespace Framework.Persistence.Outbox
             return events.Select(CreateOutboxItem).ToList();
         }
 
-        private static OutboxItem CreateOutboxItem(IDomainEvent @event)
+        public static OutboxItem CreateOutboxItem(IDomainEvent @event)
         {
             return new()
             {

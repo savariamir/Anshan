@@ -32,4 +32,9 @@ namespace Anshan.Api
             }
         }
     }
+    
+    public class SearchQueryString : QueryStringParameters
+    {
+        public string Query { set; get; }
+    }
 }

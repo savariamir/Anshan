@@ -13,7 +13,7 @@ namespace Anshan.Domain
         /// <summary>
         ///     This method is hidden intentionally to avoid being accessed outside of entity
         /// </summary>
-        void IAuditableEntity.SetModifiedAt(DateTime dateTime)
+        public  void SetModifiedAt(DateTime dateTime)
         {
             ModifiedAt = dateTime;
         }
@@ -21,7 +21,7 @@ namespace Anshan.Domain
         /// <summary>
         ///     This method is hidden intentionally to avoid being accessed outside of entity
         /// </summary>
-        void IAuditableEntity.SetCreatedAt(DateTime dateTime)
+        public void SetCreatedAt(DateTime dateTime)
         {
             CreatedAt = dateTime;
         }

@@ -4,4 +4,14 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="LiteBus.Queries.Abstractions" Version="0.8.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Framework\src\Anshan.Mongo\Anshan.Mongo.csproj" />
+      <ProjectReference Include="..\..\Domain\Catalog.Domain\Catalog.Domain.csproj" />
+      <ProjectReference Include="..\Catalog.Query.Model\Catalog.Query.Model.csproj" />
+    </ItemGroup>
+
 </Project>

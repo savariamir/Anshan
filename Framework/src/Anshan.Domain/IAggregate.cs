@@ -7,5 +7,13 @@ namespace Anshan.Domain
         void Publish(DomainEvent domainEvent);
 
         IReadOnlyCollection<DomainEvent> GetEvents();
+
+    }
+
+    public interface IVersionable
+    {
+        int Version { get; }
+
+        void IncrementVersion();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Anshan.Validator
+namespace Anshan.Validator.Abstractions
 {
     /// <summary>
     ///     Represents the validator interface

@@ -28,7 +28,13 @@ namespace Anshan.Extensions
         /// <returns></returns>
         public static TEnum ToEnum<TEnum>(this IEnumerable<string> values) where TEnum : struct, Enum
         {
-            return (TEnum) Enum.Parse(typeof(TEnum), string.Join(", ", values));
+            if (Enum.TryParse(string.Join(", ", values), out TEnum result))
+            {
+                return result;
+            }
+
+            throw new
+                NotSupportedException($"The entered value of '{values}' cannot be converted to '{typeof(TEnum).Name}'");
         }
 
         /// <summary>
@@ -39,12 +45,24 @@ namespace Anshan.Extensions
         /// <returns></returns>
         public static TEnum ToEnum<TEnum>(this string[] values) where TEnum : struct, Enum
         {
-            return (TEnum) Enum.Parse(typeof(TEnum), string.Join(", ", values));
+            if (Enum.TryParse(string.Join(", ", values), out TEnum result))
+            {
+                return result;
+            }
+
+            throw new
+                NotSupportedException($"The entered value of '{values}' cannot be converted to '{typeof(TEnum).Name}'");
         }
 
         public static TEnum ToEnum<TEnum>(this string value) where TEnum : struct, Enum
         {
-            return (TEnum) Enum.Parse(typeof(TEnum), value);
+            if (Enum.TryParse(value, out TEnum result))
+            {
+                return result;
+            }
+
+            throw new
+                NotSupportedException($"The entered value of '{value}' cannot be converted to '{typeof(TEnum).Name}'");
         }
 
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Anshan.Validator
+namespace Anshan.Validator.Abstractions
 {
     /// <summary>
     ///     Container class for the results of a validation request.

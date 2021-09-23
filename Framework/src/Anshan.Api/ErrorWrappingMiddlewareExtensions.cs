@@ -4,9 +4,14 @@ namespace Anshan.Api
 {
     public static class ErrorWrappingMiddlewareExtensions
     {
-        public static IApplicationBuilder UseProblemDetails(this IApplicationBuilder builder)
+        public static IApplicationBuilder UseManagementProblemDetails(this IApplicationBuilder builder)
         {
-            return builder.UseMiddleware<ErrorHandlingMiddleware>();
+            return builder.UseMiddleware<ManagementErrorHandlingMiddleware>();
+        }
+        
+        public static IApplicationBuilder UseApiProblemDetails(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<ApiErrorHandlingMiddleware>();
         }
     }
 }
