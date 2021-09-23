@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Query.Models.Shared;
+{% endif %}
+
+{% if Model.IsShared %}
+namespace {{ Model.SolutionName }}.Query.Models.Shared
+{% else %}
+namespace {{ Model.SolutionName }}.Query.Models.{{ Model.DomainName.InPlural }}
+{% endif %}
+{
+    public class {{ Model.QueryModelName }}
+    {
+    {% for property in Model.Properties %}
+        public {{ property.TypeName.Value }} {{ property.Title.Value }} { get; set; }
+    {% endfor %}
+    }
+}

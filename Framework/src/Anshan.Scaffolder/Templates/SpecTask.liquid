@@ -1,0 +1,68 @@
+﻿using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net.Http.Json;
+using {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Query.Models.{{ Model.DomainName.InPlural }};
+using System.Collections.Generic;
+using Anshan.Extensions;
+using System.Linq;
+{% if Model.HasShared %}
+    using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Specs.{{ Model.DomainName.InPlural }}
+{
+    public class {{ Model.DomainName.Value }}Task
+    {
+        private readonly HttpClient _httpClient;
+
+        public {{ Model.DomainName.Value }}Task(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
+        internal async Task<HttpResponseMessage> Create{{ Model.DomainName.Value }}Async(Create{{ Model.DomainName.Value }}Command command)
+        {
+            var response = await _httpClient.PostAsJsonAsync("api/{{ Model.DomainName.InKebabCase }}", command);
+    
+            return response;
+        }
+
+        internal async Task<{{ Model.DomainName.Value }}QueryModel> Get{{ Model.DomainName.Value }}Async(string id)
+        {
+            var response = await _httpClient.GetAsync($"api/{{ Model.DomainName.InKebabCase }}/{id}");
+            
+            var result = response.ReadResponse<{{ Model.DomainName.Value }}QueryModel>();
+                
+            return result;
+        }
+
+        internal async Task<HttpResponseMessage> Get{{ Model.DomainName.Value }}RawAsync(string id)
+        {
+            return await _httpClient.GetAsync($"api/{{ Model.DomainName.InKebabCase }}/{id}");
+        }            
+
+        internal async Task<IEnumerable<{{ Model.DomainName.Value }}QueryModel>> GetAllAsync{{ Model.DomainName.Value }}<T>()
+        {
+            var response = await _httpClient.GetAsync($"api/{{ Model.DomainName.InKebabCase }}");
+                    
+            var result = response.ReadResponse<IEnumerable<{{ Model.DomainName.Value }}QueryModel>>();
+                        
+            return result;
+        }
+
+        public async Task<HttpResponseMessage> Delete{{ Model.DomainName.Value }}Async(string id)
+        {
+            return await _httpClient.DeleteAsync($"api/{{ Model.DomainName.InKebabCase }}/{id}");
+        }
+                            
+        {% for useCase in Model.UseCases %}
+        public async Task<HttpResponseMessage> {{ useCase.Title.InPascalCase }}Async(string id, {{ useCase.Title.InPascalCase }}{{ Model.DomainName.Value }}Command command)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/{{ Model.DomainName.InKebabCase }}/{id}/{{ useCase.Title.InKebabCase }}", command);
+
+            return response;
+        }
+        {% endfor %}
+    }
+}

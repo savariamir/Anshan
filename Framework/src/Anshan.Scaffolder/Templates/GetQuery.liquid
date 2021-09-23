@@ -1,0 +1,36 @@
+﻿using System;
+using LiteBus.Queries.Abstractions;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using {{ Model.SolutionName }}.Query.Models.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using Mapster;
+
+namespace {{ Model.SolutionName }}.Query.{{ Model.DomainName.InPlural }}
+{
+    public class Get{{ Model.DomainName.Value }}Query : IQuery<{{ Model.DomainName.Value }}QueryModel> 
+    {
+        public string Id { get; set; }
+    }
+
+    public class Get{{ Model.DomainName.Value }}QueryHandler : IQueryHandler<Get{{ Model.DomainName.Value }}Query, {{ Model.DomainName.Value }}QueryModel>
+    {
+        private readonly I{{ Model.DomainName.InPascalCase }}Repository _repository;
+
+        public Get{{ Model.DomainName.Value }}QueryHandler(I{{ Model.DomainName.InPascalCase }}Repository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<{{ Model.DomainName.InPascalCase }}QueryModel> HandleAsync(Get{{ Model.DomainName.Value }}Query query, CancellationToken cancellationToken = default)
+        {
+            var result= await _repository.GetByIdAsync(query.Id);
+
+            var queryModel = result.Adapt<{{ Model.DomainName.InPascalCase }}QueryModel>();
+
+            return queryModel;
+        }
+    }
+}

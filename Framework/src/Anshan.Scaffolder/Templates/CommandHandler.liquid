@@ -1,0 +1,44 @@
+﻿using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using LiteBus.Commands.Abstractions;
+using FluentValidation;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }};
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Domain.Shared.Options;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Application.{{ Model.DomainName.InPlural }}.{{ Model.UseCase.Title.InPascalCase }}
+{
+    public class {{ Model.UseCase.Title.InPascalCase }}CommandValidator : AbstractValidator<{{ Model.UseCase.Title.InPascalCase }}Command>
+    {
+        public {{ Model.UseCase.Title.InPascalCase }}CommandValidator()
+        {   
+        }
+    }
+
+    public class {{ Model.UseCase.Title.InPascalCase }}CommandHandler : ICommandHandler<{{ Model.UseCase.Title.InPascalCase }}Command>
+    {
+        private readonly I{{ Model.DomainName.Value }}Repository _repository;
+
+        public {{ Model.UseCase.Title.InPascalCase }}CommandHandler(I{{ Model.DomainName.Value }}Repository repository)
+        {
+            _repository = repository;
+        }
+        
+        public async Task HandleAsync({{ Model.UseCase.Title.InPascalCase }}Command command, CancellationToken cancellationToken = default)
+        {
+            var domain = await _repository.GetByIdAsync(command.Id);
+
+            domain.{{ Model.UseCase.Title.InPascalCase }}({{ Model.UseCase.Signature }});
+
+            await _repository.UpdateAsync(domain);
+        }
+    }
+}

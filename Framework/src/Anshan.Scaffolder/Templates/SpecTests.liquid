@@ -1,0 +1,61 @@
+﻿using System;
+using System.Net;
+using {{ Model.SolutionName }}.Api;
+using {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using Microsoft.AspNetCore.Mvc.Testing;
+using TestStack.BDDfy;
+using Xunit;
+using System.Collections.Generic;
+using System.Linq;
+using Anshan.Test.Faker;
+{% if Model.HasShared %}
+    using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Specs.{{ Model.DomainName.InPlural }}
+{
+    public partial class {{ Model.DomainName.Value }}Tests : IClassFixture<WebApplicationFactory<Startup>>
+    {
+        private readonly {{ Model.DomainName.Value }}Task _task;
+        private readonly ContextData _contextData;
+
+
+        public {{ Model.DomainName.Value }}Tests(WebApplicationFactory<Startup> factory)
+        {
+            _task = new {{ Model.DomainName.Value }}Task(factory.CreateClient());    
+            _contextData = new ContextData();     
+        }
+
+        [Fact]
+        public void Should_create_{{ Model.DomainName.Value }}()
+        {
+            //Scenario
+            this.Given(_ => UserWantsToCreate{{ Model.DomainName.Value }}())
+                .When(_ => UserCreate{{ Model.DomainName.Value }}())
+                .Then(_ => Create{{ Model.DomainName.Value }}ShouldBeSuccessful())
+                .BDDfy();
+        }
+
+        [Fact]
+        public void Should_delete_{{ Model.DomainName.Value }}()
+        {
+            //Scenario
+            this.Given(_ => UserWantsToDelete{{ Model.DomainName.Value }}())
+                .When(_ => UserDelete{{ Model.DomainName.Value }}())
+                .Then(_ => Delete{{ Model.DomainName.Value }}ShouldBeSuccessful())
+                .BDDfy();
+        }
+
+        {% for useCase in Model.UseCases %}
+        [Fact]
+        public void should_{{ useCase.Title.InSnakeCase }}()
+        {
+            this.Given(_ => UserWantsTo{{ useCase.Title.Value }}{{ Model.DomainName.Value }}())
+                .When(_ => User{{ useCase.Title.Value }}{{ Model.DomainName.Value }}())
+                .Then(_ => {{ useCase.Title.Value }}{{ Model.DomainName.Value }}ShouldBeSuccessful())
+                .BDDfy();
+        }
+        {% endfor %}
+    }
+}

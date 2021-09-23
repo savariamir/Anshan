@@ -1,0 +1,35 @@
+﻿using System;
+using LiteBus.Queries.Abstractions;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using {{ Model.SolutionName }}.Query.Models.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using Mapster;
+using Anshan.Extensions.Pagination;
+
+namespace {{ Model.SolutionName }}.Query.{{ Model.DomainName.InPlural }}
+{
+    public class GetAll{{ Model.DomainName.Value }}Query : IQuery<IReadOnlyPaginatedCollection<{{ Model.DomainName.Value }}QueryModel>>
+    {
+        
+    }
+
+    public class GetAll{{ Model.DomainName.Value }}QueryHandler : IQueryHandler<GetAll{{ Model.DomainName.Value }}Query, IReadOnlyPaginatedCollection<{{ Model.DomainName.Value }}QueryModel>>
+    {
+        private readonly I{{ Model.DomainName.InPascalCase }}Repository _repository;
+        
+        public GetAll{{ Model.DomainName.InPascalCase }}QueryHandler(I{{ Model.DomainName.InPascalCase }}Repository repository)
+        {
+            _repository = repository;    
+        }
+    
+        public async Task<IReadOnlyPaginatedCollection<{{ Model.DomainName.Value }}QueryModel>> HandleAsync(GetAll{{ Model.DomainName.Value }}Query query, CancellationToken cancellationToken = default)
+        {
+            var result = await _repository.PaginateAsync();
+
+            return result.Transform(item => item.Adapt<{{ Model.DomainName.Value }}QueryModel>());
+        }
+    }
+}

@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using LiteBus.Commands.Abstractions;
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+
+{% if Model.IsShared %}
+namespace {{ Model.SolutionName }}.Application.Contracts.Shared
+{% else %}
+namespace {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }}    
+{% endif %}
+{
+    public class {{ Model.CommandName }} : ICommand{% if Model.WithReturnType %}<string>{% endif %}
+    {
+      {% if Model.IncludeId %}
+        public string Id { get; set; }
+      {% endif %}
+      {% for property in Model.Properties %}
+        public {{ property.TypeName.Value }} {{ property.Title.InPascalCase }} { get; set; }
+      {% endfor %}
+    }
+}

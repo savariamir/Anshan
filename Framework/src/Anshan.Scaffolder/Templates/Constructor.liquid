@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }}.Options;
+using Anshan.Core;
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Domain.Shared.Options;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }}
+{
+    public partial class {{ Model.ObjectName }}
+    {
+        public {{ Model.ObjectName }}({{ Model.ObjectName }}Options options)
+        {
+        {% for property in Model.Properties %}
+            {% if property.IsUserDefinedType and property.IsList != true %}
+            {{ property.Title.InPascalCase }} = new {{ property.TypeName.InPascalCase }}(options.{{ property.Title.InPascalCase }});
+            {% elsif property.IsUserDefinedType and property.IsList == true %}
+            {{ property.Title.InPascalCase }} = options.{{ property.Title.InPascalCase }}.Select(o => new {{ property.InnerTypeName.Value }}(o));
+            {% else %}
+            {{ property.Title.InPascalCase }} = options.{{ property.Title.InPascalCase }};
+            {% endif %}
+        {% endfor %}
+        }
+    }
+}

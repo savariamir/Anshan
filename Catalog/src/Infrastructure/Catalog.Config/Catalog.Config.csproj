@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="LiteBus.Extensions.MicrosoftDependencyInjection" Version="0.8.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Framework\src\Anshan.LiteBus\Anshan.LiteBus.csproj" />
+      <ProjectReference Include="..\..\..\..\Framework\src\Anshan.Mongo\Anshan.Mongo.csproj" />
+      <ProjectReference Include="..\..\Application\Catalog.Application\Catalog.Application.csproj" />
+      <ProjectReference Include="..\Catalog.Persistence.Mongo\Catalog.Persistence.Mongo.csproj" />
+      <ProjectReference Include="..\Catalog.Query\Catalog.Query.csproj" />
+    </ItemGroup>
+
+</Project>

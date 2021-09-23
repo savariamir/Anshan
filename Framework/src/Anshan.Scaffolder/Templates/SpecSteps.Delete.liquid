@@ -1,0 +1,43 @@
+﻿using System.Net;
+using System.Threading.Tasks;
+using Advertisement.Application.Contracts.{{ Model.DomainName.InPlural }};
+using Anshan.Test.Faker;
+using FluentAssertions;
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Specs.{{ Model.DomainName.InPlural }}
+{
+    public partial class {{ Model.DomainName.Value }}Tests
+    {
+        private async Task UserWantsToDelete{{ Model.DomainName.Value }}()
+        {
+            var createCommand = TestFaker.Build<Create{{ Model.DomainName.Value }}Command>();
+        
+            var httpResponseMessage = await _task.Create{{ Model.DomainName.Value }}Async(createCommand);
+        
+            var id = await httpResponseMessage.Content.ReadAsStringAsync();
+        
+            _contextData.Set("{{ Model.UseCase.Title.Value }}_Id", id);
+        }
+
+        private async Task UserDelete{{ Model.DomainName.Value }}()
+        {
+            var id = _contextData.Get<string>("Delete{{ Model.DomainName.Value }}Command_Id");
+
+            var deleteResponse = await _task.Delete{{ Model.DomainName.Value }}Async(id);
+
+            deleteResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        private async Task Delete{{ Model.DomainName.Value }}ShouldBeSuccessful()
+        {
+            var id = _contextData.Get<string>("Delete{{ Model.DomainName.Value }}Command_Id");
+
+            var httpResponse = await _task.Get{{ Model.DomainName.Value }}RawAsync(id);
+
+            httpResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
+        }
+    }
+}

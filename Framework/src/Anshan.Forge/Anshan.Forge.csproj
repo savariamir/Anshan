@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <IsPackable>true</IsPackable>
+        <Title>Anshan.Forge</Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Anshan.Domain\Anshan.Domain.csproj" />
+        <ProjectReference Include="..\Anshan.Extensions\Anshan.Extensions.csproj" />
+    </ItemGroup>
+
+</Project>

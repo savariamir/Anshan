@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Domain.Shared.Options;
+{% endif %}
+
+{% if Model.IsShared %}
+namespace {{ Model.SolutionName }}.Domain.Shared.Options
+{% else %}
+namespace {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }}.Options
+{% endif %}
+{
+    public class {{ Model.OptionsName }}
+    {
+      {% for property in Model.Properties %}
+        public {{ property.TypeName.Value }} {{ property.Title.InPascalCase }} { get; set; }
+      {% endfor %}
+    }
+}

@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }}.Options;
+using Anshan.Core;
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Domain.Shared.Options;
+{% endif %}
+
+{% if Model.IsShared %}
+namespace {{ Model.SolutionName }}.Domain.Shared.Builders
+{% else %}
+namespace {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }}.Builders
+{% endif %}
+{
+    public class {{ Model.BuilderName }} : Builder<{{ Model.OptionsName }}>
+    {
+        {% for property in Model.Properties %}
+        public {{ Model.BuilderName }} With{{ property.Title.InPascalCase }}({{ property.TypeName.Value }} {{ property.Title.InCamelCase }})
+        {
+            SetValue(o => o.{{ property.Title.InPascalCase }}, {{ property.Title.InCamelCase }});
+    
+            return this;
+        }
+        {% endfor %}
+    }
+}

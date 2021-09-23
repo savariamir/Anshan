@@ -1,0 +1,43 @@
+﻿using NSubstitute;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
+using Xunit;
+using NSubstitute;
+using AutoFixture;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Application.{{ Model.DomainName.InPlural }}.{{ Model.UseCase.Title.InPascalCase }};
+using Anshan.Test.Faker;
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Application.Tests.Unit.{{ Model.DomainName.InPlural }}
+{
+    public class {{ Model.UseCase.Title.InPascalCase }}CommandHandlerTests
+    {
+        [Fact]
+        public async void Should_handle_correctly()
+        {
+            // Arrange
+            var command = TestFaker.Build<{{ Model.UseCase.Title.InPascalCase }}Command>();
+            var repository = Substitute.For<I{{ Model.DomainName.InPascalCase }}Repository>();
+            var handler = new {{ Model.UseCase.Title.InPascalCase }}CommandHandler(repository);
+            var domain = Substitute.For<{{ Model.DomainName.InPascalCase }}>();
+            repository
+                .GetByIdAsync(Arg.Any<string>())
+                .Returns(domain);
+
+            // Act
+            await handler.HandleAsync(command);
+
+            // Assert
+            repository.Received(1).GetByIdAsync(command.Id);
+            repository.Received(1).UpdateAsync(Arg.Any<{{ Model.DomainName.InPascalCase }}>());
+            domain.Received(1).{{ Model.UseCase.Title.InPascalCase }}({{ Model.UseCase.UnitTestSignature }});
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿using System;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using LiteBus.Commands.Abstractions;
+using FluentValidation;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }};
+{% if Model.HasShared %}
+    using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+{% if Model.HasShared %}
+    using {{ Model.SolutionName }}.Domain.Shared.Options;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Application.{{ Model.DomainName.InPlural }}.Delete
+{
+    public class Delete{{ Model.DomainName.Value }}CommandValidator : AbstractValidator<Delete{{ Model.DomainName.Value }}Command>
+    {
+        public Delete{{ Model.DomainName.Value }}CommandValidator()
+        {   
+        }
+    }
+
+    public class Delete{{ Model.DomainName.Value }}CommandHandler : ICommandHandler<Delete{{ Model.DomainName.Value }}Command>
+    {
+        private readonly I{{ Model.DomainName.Value }}Repository _repository;
+
+        public Delete{{ Model.DomainName.Value }}CommandHandler(I{{ Model.DomainName.Value }}Repository repository)
+        {
+            _repository = repository;
+        }
+        
+        public async Task HandleAsync(Delete{{ Model.DomainName.Value }}Command command, CancellationToken cancellationToken = default)
+        {
+            var domain = await _repository.GetByIdAsync(command.Id);
+
+            domain.Delete();
+
+            await _repository.UpdateAsync(domain);
+        }
+    }
+}

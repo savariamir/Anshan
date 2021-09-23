@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using LiteBus.Commands.Abstractions;
+
+namespace {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }}
+{
+    public class Create{{ Model.DomainName.InPascalCase }}Command : ICommand<string>
+    {
+      {% for property in Model.Properties %}
+        public {{ property.TypeName.InPascalCase }} {{ property.Title.InPascalCase }} { get; set; }
+      {% endfor %}
+    }
+}

@@ -1,0 +1,16 @@
+﻿using Anshan.Mongo;
+using Anshan.Mongo.Abstractions;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using System.Collections.Generic;
+using System.Linq;
+
+namespace {{ Model.SolutionName }}.Persistence.Mongo.Repositories
+{
+    public class {{ Model.DomainName.Value }}Repository : MongoRepositoryBase<{{ Model.DomainName.Value }}>, I{{ Model.DomainName.Value }}Repository
+    {
+        public {{ Model.DomainName.Value }}Repository(IMongoConnection mongoConnection) : base(mongoConnection)
+        {
+        
+        }
+    }
+}

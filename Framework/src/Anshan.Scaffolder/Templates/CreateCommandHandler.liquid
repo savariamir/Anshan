@@ -1,0 +1,53 @@
+﻿using System;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using LiteBus.Commands.Abstractions;
+using System.Threading.Tasks;
+using FluentValidation;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }}.Builders;
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }}.Options;
+using Mapster;
+{% if Model.HasShared %}
+    using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+{% if Model.HasShared %}
+    using {{ Model.SolutionName }}.Domain.Shared.Options;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Application.{{ Model.DomainName.InPlural }}.Create
+{
+    public class Create{{ Model.DomainName.InPascalCase }}CommandValidator : AbstractValidator<Create{{ Model.DomainName.InPascalCase }}Command>
+    {
+        public Create{{ Model.DomainName.InPascalCase }}CommandValidator()
+        {   
+        }
+    }
+    
+    public class Create{{ Model.DomainName.InPascalCase }}CommandHandler : ICommandHandler<Create{{ Model.DomainName.InPascalCase }}Command, string>
+    {
+        private readonly I{{ Model.DomainName.InPascalCase }}Repository _repository;
+
+        public Create{{ Model.DomainName.InPascalCase }}CommandHandler(I{{ Model.DomainName.InPascalCase }}Repository repository)
+        {
+            _repository = repository;
+        }
+        
+        public async Task<string> HandleAsync(Create{{ Model.DomainName.InPascalCase }}Command command, CancellationToken cancellationToken = default)
+        {
+            string nextId = await _repository.GetNextIdAsync();
+
+            var options = new {{ Model.DomainName.InPascalCase }}Builder()
+                {% for property in Model.Properties %}
+                .With{{ property.Title.InPascalCase }}(command.{{ property.Title.InPascalCase }}{% if property.IsUserDefinedType %}.Adapt<{{ property.TypeName.InPascalCase }}>(){% endif %})
+                {% endfor %}
+                .WithId(nextId)
+                .Build();
+        
+            return nextId;
+        }
+    }
+}

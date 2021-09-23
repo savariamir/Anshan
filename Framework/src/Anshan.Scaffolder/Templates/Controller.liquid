@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using LiteBus.Commands.Abstractions;
+using LiteBus.Queries.Abstractions;
+using Anshan.Extensions.Pagination;
+using Microsoft.AspNetCore.Mvc;
+using {{ Model.SolutionName }}.Query.Models.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Domain.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Query.{{ Model.DomainName.InPlural }};
+using {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }};
+
+namespace {{ Model.SolutionName }}.Api.Controllers
+{
+    [ApiController]
+    [Route("api/{{ Model.DomainName.InKebabCase }}")]
+    public class {{ Model.DomainName.InPascalCase }}Controller : ControllerBase
+    {
+        private readonly ICommandMediator _commandMediator;
+        private readonly IQueryMediator _queryMediator;
+        
+        public {{ Model.DomainName.InPascalCase }}Controller(ICommandMediator commandMediator, IQueryMediator queryMediator)
+        {
+            _commandMediator = commandMediator;
+            _queryMediator = queryMediator;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<{{ Model.DomainName.InPascalCase }}QueryModel> GetSingle(string id)
+        {
+            return await _queryMediator.QueryAsync(new Get{{ Model.DomainName.InPascalCase }}Query
+            {
+                Id = id
+            });
+        }
+
+        [HttpGet]
+        public async Task<IReadOnlyPaginatedCollection<{{ Model.DomainName.InPascalCase }}QueryModel>> GetAll()
+        {
+            return await _queryMediator.QueryAsync(new GetAll{{ Model.DomainName.InPascalCase }}Query());
+        }
+
+        [HttpPost]
+        public async Task<string> Create(Create{{ Model.DomainName.InPascalCase }}Command command)
+        {
+            return await _commandMediator.SendAsync(command);
+        }
+        
+        [HttpDelete("{id}")]
+        public async Task Delete(string id)
+        {
+            await _commandMediator.SendAsync(new Delete{{ Model.DomainName.InPascalCase }}Command() 
+            {
+                Id = id
+            });
+        }
+        
+      {% for useCase in Model.UseCases %}
+        [HttpPut("{id}/{{ useCase.Title.InKebabCase }}")]
+        public async Task {{ useCase.Title.InPascalCase }}({{ useCase.Title.InPascalCase }}Command command)
+        {
+            await _commandMediator.SendAsync(command);
+        }
+      {% endfor %}
+    }
+}

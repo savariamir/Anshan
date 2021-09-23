@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Blurhash.ImageSharp" Version="1.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+        <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
+
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Blurhash.Core" Version="1.1.0" />
+    </ItemGroup>
+
+</Project>

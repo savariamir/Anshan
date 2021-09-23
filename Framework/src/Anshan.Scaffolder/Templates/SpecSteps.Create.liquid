@@ -1,0 +1,44 @@
+﻿using System.Net;
+using System.Threading.Tasks;
+using {{ Model.SolutionName }}.Application.Contracts.{{ Model.DomainName.InPlural }};
+using Anshan.Test.Faker;
+using FluentAssertions;
+{% if Model.HasShared %}
+using {{ Model.SolutionName }}.Application.Contracts.Shared;
+{% endif %}
+
+namespace {{ Model.SolutionName }}.Specs.{{ Model.DomainName.InPlural }}
+{
+    public partial class {{ Model.DomainName.Value }}Tests
+    {
+        private async Task UserWantsToCreate{{ Model.DomainName.Value }}()
+        {
+            var createCommand = TestFaker.Build<Create{{ Model.DomainName.Value }}Command>();
+            
+            _contextData.Set("Create{{ Model.DomainName.Value }}Command", createCommand);
+        }
+
+        private async Task UserCreate{{ Model.DomainName.Value }}()
+        {
+            var createCommand = _contextData.Get<Create{{ Model.DomainName.Value }}Command>("Create{{ Model.DomainName.Value }}Command");
+            
+            var createHttpResponse = await _task.Create{{ Model.DomainName.Value }}Async(createCommand);
+
+            createHttpResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+            
+            var id = await createHttpResponse.Content.ReadAsStringAsync();
+            
+            _contextData.Set("Create{{ Model.DomainName.Value }}Command_Id", id);
+        }
+
+        private async Task Create{{ Model.DomainName.Value }}ShouldBeSuccessful()
+        {
+            var id = _contextData.Get<string>("Create{{ Model.DomainName.Value }}Command_Id");
+            var createCommand = _contextData.Get<Create{{ Model.DomainName.Value }}Command>("Create{{ Model.DomainName.Value }}Command");
+
+            var domainReadModel = await _task.Get{{ Model.DomainName.Value }}Async(id);
+            
+            domainReadModel.Should().BeEquivalentTo(createCommand);
+        }
+    }
+}
