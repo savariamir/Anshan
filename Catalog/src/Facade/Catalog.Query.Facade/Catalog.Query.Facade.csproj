@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="EasyPipe" Version="0.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Framework\src\Anshan.Mongo\Anshan.Mongo.csproj" />
+      <ProjectReference Include="..\..\Domain\Catalog.Domain\Catalog.Domain.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Catalog.Cache.Memory\Catalog.Cache.Memory.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Catalog.Cache.Redis\Catalog.Cache.Redis.csproj" />
+      <ProjectReference Include="..\Catalog.Query.ReadModel\Catalog.Query.ReadModel.csproj" />
+    </ItemGroup>
+
+</Project>
