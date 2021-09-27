@@ -19,15 +19,17 @@ namespace Catalog.Query.Facade.Products.Middlewares
             _mongoConnection = mongoConnection;
         }
 
-        public async Task<ProductReadModel> RunAsync(string request, 
-            IPipelineContext context, 
-            Func<Task<ProductReadModel>> next, 
+        public async Task<ProductReadModel> RunAsync(string request,
+            IPipelineContext context,
+            Func<Task<ProductReadModel>> next,
             CancellationToken cancellationToken)
         {
             var connection = _mongoConnection.GetCollection<Product>();
 
-            var product = await connection.Find(FilterDefinition<Product>.Empty)
-                .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+            var product = await
+                connection
+                    .Find(FilterDefinition<Product>.Empty)
+                    .FirstOrDefaultAsync(cancellationToken);
 
             return new ProductReadModel
             {
@@ -37,7 +39,7 @@ namespace Catalog.Query.Facade.Products.Middlewares
                 Vendor = product.Vendor,
                 Price = product.Price.Value,
                 Quantity = product.Quantity,
-                ProductAttributes = product.ProductAttributes.Select(p=> new ProductAttributeReadModel
+                ProductAttributes = product.ProductAttributes.Select(p => new ProductAttributeReadModel
                 {
                     Key = p.Key,
                     Value = p.Value

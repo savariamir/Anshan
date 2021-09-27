@@ -96,7 +96,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Facade", "Facade", "{003A3E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Query.Facade", "Catalog\src\Facade\Catalog.Query.Facade\Catalog.Query.Facade.csproj", "{3D84B4B6-ECD3-4216-9C2B-12FB7311FF34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Query.ReadModel", "Catalog\src\Facade\Catalog.Query.ReadModel\Catalog.Query.ReadModel.csproj", "{2867EF0F-1EDD-4E5E-874A-53AA4709D56A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Query.ReadModel", "Catalog\src\Infrastructure\Catalog.Query.ReadModel\Catalog.Query.ReadModel.csproj", "{2DEDFBD9-1790-4486-9FCA-6DE28A0C79BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,7 +149,7 @@ Global
 		{8FE28671-07AC-4771-96AE-D165D066B086} = {22535AA4-BF61-4362-90BE-9A399A18828A}
 		{003A3E2E-082F-4010-A959-73B197AE5D9D} = {80C5177C-F2E6-4783-98FA-A753356DD37D}
 		{3D84B4B6-ECD3-4216-9C2B-12FB7311FF34} = {003A3E2E-082F-4010-A959-73B197AE5D9D}
-		{2867EF0F-1EDD-4E5E-874A-53AA4709D56A} = {003A3E2E-082F-4010-A959-73B197AE5D9D}
+		{2DEDFBD9-1790-4486-9FCA-6DE28A0C79BA} = {22535AA4-BF61-4362-90BE-9A399A18828A}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{05F8ECA9-16CA-4B46-BB89-2D572D5E27AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -296,9 +296,9 @@ Global
 		{3D84B4B6-ECD3-4216-9C2B-12FB7311FF34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D84B4B6-ECD3-4216-9C2B-12FB7311FF34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D84B4B6-ECD3-4216-9C2B-12FB7311FF34}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2867EF0F-1EDD-4E5E-874A-53AA4709D56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2867EF0F-1EDD-4E5E-874A-53AA4709D56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2867EF0F-1EDD-4E5E-874A-53AA4709D56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2867EF0F-1EDD-4E5E-874A-53AA4709D56A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DEDFBD9-1790-4486-9FCA-6DE28A0C79BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DEDFBD9-1790-4486-9FCA-6DE28A0C79BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DEDFBD9-1790-4486-9FCA-6DE28A0C79BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DEDFBD9-1790-4486-9FCA-6DE28A0C79BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

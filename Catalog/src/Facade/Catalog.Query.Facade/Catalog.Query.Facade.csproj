@@ -13,6 +13,7 @@
       <ProjectReference Include="..\..\Domain\Catalog.Domain\Catalog.Domain.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Catalog.Cache.Memory\Catalog.Cache.Memory.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Catalog.Cache.Redis\Catalog.Cache.Redis.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Catalog.Query.ReadModel\Catalog.Query.ReadModel.csproj" />
       <ProjectReference Include="..\Catalog.Query.ReadModel\Catalog.Query.ReadModel.csproj" />
     </ItemGroup>
 
